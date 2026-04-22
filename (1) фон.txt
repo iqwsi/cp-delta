@@ -1,0 +1,164 @@
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700&family=Raleway:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --site-max: 1200px;
+    --site-pad: 20px;
+    --font-main: 'Exo 2', sans-serif;
+    --font-accent: 'Raleway', sans-serif;
+}
+
+/* убираем горизонтальный скролл */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* базовый шрифт и фон */
+body {
+    font-family: var(--font-main);
+    background: linear-gradient(120deg, #eef2f5 0%, #dce6ee 40%, #e9e4ef 100%);
+}
+
+/* убираем белый фон стандартных блоков Tilda */
+.t-records {
+    background: transparent !important;
+}
+
+/* мягкое синее свечение */
+body::before {
+    content: "";
+    position: fixed;
+    left: -10%;
+    bottom: -20%;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(60,120,255,0.2) 0%, transparent 70%);
+    filter: blur(60px);
+    z-index: -1;
+}
+
+/* ПРАВЫЙ КРУГ */
+body::after {
+    content: "";
+    position: fixed;
+    right: 10%;
+    top: 10%;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 2px dashed rgba(120,80,160,0.4);
+    animation: rotate 20s linear infinite;
+    z-index: -1;
+}
+
+/* ЛЕВЫЙ КРУГ */
+.delta-left-circle {
+    position: fixed;
+    left: 6%;
+    top: 70%;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 2px dashed rgba(120,80,160,0.4);
+    animation: rotate 20s linear infinite reverse;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* общая ширина секций */
+.top-gallery,
+.detail-block {
+    max-width: calc(var(--site-max) + var(--site-pad) * 2) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: var(--site-pad) !important;
+    padding-right: var(--site-pad) !important;
+    box-sizing: border-box;
+}
+
+.about-company-container {
+    max-width: var(--site-max) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    box-sizing: border-box;
+}
+
+#delta-contact-block .contact-card {
+    max-width: var(--site-max) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: var(--site-pad) !important;
+    padding-right: var(--site-pad) !important;
+    box-sizing: border-box;
+}
+
+#delta-map-widget .app-viewport {
+    width: calc(100% - var(--site-pad) * 2) !important;
+    max-width: var(--site-max) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    min-height: 760px;
+}
+
+#delta-map-widget .header {
+    margin: 0 0 10px 0 !important;
+    max-width: 460px;
+}
+
+/* общие шрифты */
+p, span, div, li, a {
+    font-family: var(--font-main);
+}
+
+h1, h2, h3, .detail-title, .top-card-title {
+    font-family: var(--font-accent);
+    font-weight: 700;
+}
+
+/* чтобы якоря не уезжали под fixed header */
+#about,
+#contacts {
+    scroll-margin-top: 100px;
+}
+
+/* убираем лишнюю горизонтальную тряску */
+#delta-logo-marquee,
+#delta-map-widget,
+.top-gallery,
+.detail-block,
+.about-company-section,
+#contacts {
+    overflow-x: clip;
+}
+
+/* адаптив */
+@media (max-width: 768px) {
+    .about-company-container {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+
+    #delta-map-widget .app-viewport {
+        width: calc(100% - 24px) !important;
+    }
+
+    /* на телефоне убираем оба круга */
+    body::after {
+        display: none;
+    }
+
+    .delta-left-circle {
+        display: none;
+    }
+}
+</style>
+
+<div class="delta-left-circle" aria-hidden="true"></div>

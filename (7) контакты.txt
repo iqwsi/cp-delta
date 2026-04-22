@@ -1,0 +1,244 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700&display=swap');
+
+#contacts {
+    scroll-margin-top: 100px;
+}
+
+#delta-contact-block {
+    --bg: #1D1C21;
+    --text: #F5E6D3;
+    --text-hover: #ffffff;
+    --font: 'Exo 2', sans-serif;
+    width: 100%;
+    background: var(--bg);
+    padding: 0;
+}
+
+#delta-contact-block * {
+    box-sizing: border-box;
+}
+
+#delta-contact-block .contact-card {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    background: transparent;
+    font-family: var(--font);
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 26px;
+    letter-spacing: 0.05em;
+    color: var(--text);
+}
+
+#delta-contact-block .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px 30px;
+    text-align: left;
+}
+
+#delta-contact-block .contact-item {
+    transition: transform 0.2s ease;
+}
+
+#delta-contact-block .contact-item:hover {
+    transform: translateY(-5px);
+}
+
+#delta-contact-block .contact-icon {
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#delta-contact-block .contact-icon svg {
+    width: 32px;
+    height: 32px;
+    stroke-width: 1.5;
+    stroke: var(--text);
+    fill: none;
+    transition: stroke 0.2s ease;
+}
+
+#delta-contact-block .contact-item:hover .contact-icon svg {
+    stroke: var(--text-hover);
+}
+
+#delta-contact-block .contact-label {
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    color: var(--text);
+    opacity: 0.9;
+    transition: opacity 0.2s ease;
+}
+
+#delta-contact-block .contact-item:hover .contact-label {
+    opacity: 1;
+}
+
+#delta-contact-block .contact-value {
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 26px;
+    letter-spacing: 0.05em;
+    margin: 0;
+    color: var(--text);
+}
+
+#delta-contact-block .address-link,
+#delta-contact-block .email-copy,
+#delta-contact-block .phone-copy {
+    cursor: pointer;
+    display: inline-block;
+    transition: all 0.2s ease;
+    font-weight: 400;
+    text-decoration: none;
+    color: var(--text);
+}
+
+#delta-contact-block .address-link:hover,
+#delta-contact-block .email-copy:hover,
+#delta-contact-block .phone-copy:hover {
+    font-weight: 700;
+    color: var(--text-hover);
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    #delta-contact-block .contact-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px 20px;
+    }
+
+    #delta-contact-block .contact-card {
+        padding: 40px 16px;
+        font-size: 18px;
+        line-height: 24px;
+    }
+
+    #delta-contact-block .contact-value {
+        font-size: 18px;
+        line-height: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    #delta-contact-block .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        text-align: center;
+    }
+
+    #delta-contact-block .contact-icon {
+        justify-content: center;
+    }
+
+    #delta-contact-block .contact-label,
+    #delta-contact-block .contact-value {
+        text-align: center;
+    }
+}
+</style>
+
+<div id="contacts">
+    <div id="delta-contact-block">
+        <div class="contact-card">
+            <div class="contact-grid">
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                            <circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                        </svg>
+                    </div>
+                    <div class="contact-label">Адрес</div>
+                    <div class="contact-value">
+                        <a
+                            class="address-link"
+                            href="https://yandex.ru/maps/?pt=60.575277,56.804732&z=17"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            г. Екатеринбург, ул. Волгоградская,<br>
+                            стр. 47Б
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                            <path d="M22 7L12 13L2 7" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                        </svg>
+                    </div>
+                    <div class="contact-label">Электронная почта</div>
+                    <div class="contact-value">
+                        <span class="email-copy" data-copy="t-antipina@inbox.ru">t-antipina@inbox.ru</span><br>
+                        <span class="email-copy" data-copy="doc@cpdelta.ru">doc@cpdelta.ru</span>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                        </svg>
+                    </div>
+                    <div class="contact-label">Телефон</div>
+                    <div class="contact-value">
+                        <span class="phone-copy" data-copy="+7 343 344-96-48">+7 343 344-96-48</span><br>
+                        <span class="phone-copy" data-copy="+7 343 221-49-39">+7 343 221-49-39</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+(function () {
+    const root = document.getElementById('delta-contact-block');
+    if (!root) return;
+
+    function fallbackCopy(text) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        textarea.style.pointerEvents = 'none';
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+        try {
+            document.execCommand('copy');
+        } catch (e) {}
+        document.body.removeChild(textarea);
+    }
+
+    function copyToClipboard(text) {
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(text).catch(function () {
+                fallbackCopy(text);
+            });
+        } else {
+            fallbackCopy(text);
+        }
+    }
+
+    root.querySelectorAll('.email-copy, .phone-copy').forEach(function (el) {
+        el.addEventListener('click', function () {
+            const value = this.getAttribute('data-copy') || this.textContent.trim();
+            copyToClipboard(value);
+        });
+    });
+})();
+</script>

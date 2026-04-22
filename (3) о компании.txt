@@ -1,0 +1,126 @@
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<div class="about-company-clean" id="about">
+  <div class="about-company-clean__container">
+
+    <div class="about-company-clean__left">
+      <h2 class="about-company-clean__title">О компании</h2>
+      <p class="about-company-clean__lead">
+        Центр проектирования Дельта — проектная, рабочая и сметная документация для сложных объектов.
+      </p>
+    </div>
+
+    <div class="about-company-clean__right">
+      <div class="about-company-clean__text">
+        <p>
+          Центр проектирования Дельта разрабатывает проектную, рабочую и сметную документацию для сложных объектов.
+          Мы работаем с театрами, культурными площадками, образовательными и административными зданиями,
+          помогая реализовывать проекты от идеи до экспертизы.
+        </p>
+
+        <p>
+          Наша команда объединяет специалистов с опытом более 20 лет в проектировании.
+          Мы не просто делаем документацию — мы понимаем, как объект будет работать в реальности,
+          и закладываем это в проект.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+.about-company-clean {
+  padding: 110px 20px;
+
+}
+
+.about-company-clean__container {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(260px, 360px) minmax(0, 1fr);
+  gap: 80px;
+  align-items: start;
+}
+
+/* ЛЕВО */
+.about-company-clean__left {
+  position: sticky;
+  top: 110px;
+}
+
+.about-company-clean__title {
+  margin: 0 0 28px 0;
+  font-family: "Exo 2", sans-serif;
+  font-size: 58px;
+  font-weight: 700;
+  color: #111;
+  letter-spacing: -0.02em;
+}
+
+.about-company-clean__lead {
+  margin: 0;
+  max-width: 300px;
+  font-family: "Exo 2", sans-serif;
+  font-size: 18px;
+  color: #8e949c;
+  line-height: 1.55;
+}
+
+/* ПРАВО */
+.about-company-clean__text {
+  max-width: 760px;
+}
+
+.about-company-clean__text p {
+  margin: 0 0 22px 0;
+  font-family: "Exo 2", sans-serif;
+  font-size: 24px;
+  line-height: 1.55;
+  color: #2f3540;
+}
+
+.about-company-clean__text p:last-child {
+  margin-bottom: 0;
+}
+
+/* МОБИЛКА */
+@media (max-width: 980px) {
+  .about-company-clean {
+    padding: 80px 20px;
+  }
+
+  .about-company-clean__container {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .about-company-clean__left {
+    position: static;
+  }
+
+  .about-company-clean__title {
+    font-size: 42px;
+    margin-bottom: 18px;
+  }
+
+  .about-company-clean__text p {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .about-company-clean {
+    padding: 64px 16px;
+  }
+
+  .about-company-clean__title {
+    font-size: 34px;
+  }
+
+  .about-company-clean__text p {
+    font-size: 17px;
+  }
+}
+</style>

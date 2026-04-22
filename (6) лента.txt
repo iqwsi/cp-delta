@@ -1,0 +1,137 @@
+<style>
+#delta-logo-marquee {
+    width: 100%;
+    overflow: hidden;
+    background: #ffffff;
+    padding: 18px 0;
+    position: relative;
+}
+
+#delta-logo-marquee * {
+    box-sizing: border-box;
+}
+
+#delta-logo-marquee .marquee {
+    display: flex;
+    width: max-content;
+    align-items: center;
+    animation: delta-scroll-left 55s linear infinite;
+    will-change: transform;
+}
+
+#delta-logo-marquee .marquee-group {
+    display: flex;
+    align-items: center;
+    gap: 42px;
+    padding-right: 42px;
+    flex-shrink: 0;
+}
+
+#delta-logo-marquee .logo-item {
+    width: 92px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+#delta-logo-marquee .logo-item img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+   filter: none;
+    opacity: 0.95;
+    user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
+}
+
+@keyframes delta-scroll-left {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+@media (max-width: 900px) {
+    #delta-logo-marquee .marquee-group {
+        gap: 30px;
+        padding-right: 30px;
+    }
+
+    #delta-logo-marquee .logo-item {
+        width: 76px;
+        height: 26px;
+    }
+}
+
+@media (max-width: 640px) {
+    #delta-logo-marquee {
+        padding: 14px 0;
+    }
+
+    #delta-logo-marquee .marquee-group {
+        gap: 22px;
+        padding-right: 22px;
+    }
+
+    #delta-logo-marquee .logo-item {
+        width: 62px;
+        height: 22px;
+    }
+}
+</style>
+
+<div id="delta-logo-marquee">
+    <div class="marquee" id="delta-logo-track"></div>
+</div>
+
+<script>
+(function () {
+    const track = document.getElementById('delta-logo-track');
+    if (!track) return;
+
+    const logos = [
+        { url: 'https://i.yapx.ru/dUaMI.jpg', name: 'Логотип 1' },
+        { url: 'https://i.yapx.ru/dUaQw.jpg', name: 'Логотип 2' },
+        { url: 'https://i.yapx.ru/dUaSq.jpg', name: 'Логотип 3' },
+        { url: 'https://i.yapx.ru/dUaUw.jpg', name: 'Логотип 4' },
+
+        { url: 'https://i.yapx.ru/dUakE.jpg', name: 'Логотип 6' },
+        { url: 'https://i.yapx.ru/dUane.jpg', name: 'Логотип 7' },
+        { url: 'https://i.yapx.ru/dUaqN.jpg', name: 'Логотип 8' },
+        { url: 'https://i.yapx.ru/dUaug.jpg', name: 'Логотип 9' },
+        { url: 'https://i.yapx.ru/dUcGa.jpg', name: 'Логотип 10' }
+    ];
+
+    function createGroup() {
+        const group = document.createElement('div');
+        group.className = 'marquee-group';
+
+        logos.forEach(function (item) {
+            const wrap = document.createElement('div');
+            wrap.className = 'logo-item';
+
+            const img = document.createElement('img');
+            img.src = item.url;
+            img.alt = item.name;
+            img.loading = 'lazy';
+            img.draggable = false;
+
+            wrap.appendChild(img);
+            group.appendChild(wrap);
+        });
+
+        return group;
+    }
+
+    track.innerHTML = '';
+    track.appendChild(createGroup());
+    track.appendChild(createGroup());
+    track.appendChild(createGroup());
+})();
+</script>

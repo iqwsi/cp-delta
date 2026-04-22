@@ -1,0 +1,657 @@
+<style>
+html {
+    scroll-behavior: smooth;
+}
+
+.top-gallery {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+
+}
+
+.top-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+/* КАРТОЧКИ-КАТЕГОРИИ */
+.top-card {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    cursor: pointer;
+    height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.top-card img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.4s ease;
+}
+
+.top-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.34);
+    transition: 0.3s ease;
+}
+
+.top-card-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.top-card-title {
+    font-size: 34px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.02em;
+    line-height: 1.15;
+}
+
+.top-card:hover img {
+    transform: scale(1.05);
+}
+
+.top-card:hover::after {
+    background: rgba(0,0,0,0.45);
+}
+
+/* БЛОК С ДЕТАЛЯМИ */
+.detail-block {
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 0 20px 60px;
+    box-sizing: border-box;
+
+}
+
+.detail-box {
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    padding: 0;
+}
+
+/* СЛАЙДЕР */
+.slider {
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.slider-stage {
+    position: relative;
+    width: 100%;
+    height: 700px;
+    border-radius: 14px;
+    overflow: hidden;
+    background: rgba(0,0,0,0.08);
+}
+
+.slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.45s ease;
+}
+
+.slide.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: #fff;
+    background: rgba(0,0,0,0.45);
+    border-radius: 50%;
+    cursor: pointer;
+    user-select: none;
+    transition: 0.2s ease;
+    z-index: 5;
+}
+
+.arrow:hover {
+    background: rgba(0,0,0,0.7);
+}
+
+.arrow.left {
+    left: 18px;
+}
+
+.arrow.right {
+    right: 18px;
+}
+
+.slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+}
+
+.slider-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(17,17,17,0.18);
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.slider-dot.active {
+    background: #111;
+    transform: scale(1.15);
+}
+
+.detail-title {
+    font-size: 40px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 18px;
+    margin-top: 20px;
+    line-height: 1.1;
+}
+
+.detail-text {
+    font-size: 17px;
+    line-height: 1.7;
+    color: #333;
+    margin-bottom: 18px;
+}
+
+.detail-meta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 26px;
+}
+
+.detail-meta-item {
+    border: 1px solid #ececec;
+    border-radius: 12px;
+    padding: 16px;
+    background: #fafafa;
+    min-height: 120px;
+}
+
+.detail-meta-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #777;
+    margin-bottom: 8px;
+}
+
+.detail-meta-value {
+    font-size: 16px;
+    font-weight: 600;
+    color: #111;
+    line-height: 1.45;
+}
+
+.detail-meta-value.list {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.6;
+    white-space: normal;
+}
+
+/* МОБИЛКА */
+@media (max-width: 980px) {
+    .top-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .top-card {
+        height: 220px;
+    }
+
+    .top-card-title {
+        font-size: 28px;
+    }
+
+    .slider-stage {
+        height: 520px;
+    }
+
+    .detail-title {
+        font-size: 30px;
+    }
+
+    .detail-meta {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .top-gallery,
+    .detail-block {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .top-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .top-card {
+        height: 200px;
+    }
+
+    .top-card-title {
+        font-size: 24px;
+    }
+
+    .slider-stage {
+        height: 320px;
+    }
+
+    .detail-box {
+        padding: 14px;
+    }
+
+    .detail-title {
+        font-size: 24px;
+    }
+
+    .detail-text {
+        font-size: 15px;
+    }
+
+    .arrow {
+        width: 42px;
+        height: 42px;
+        font-size: 22px;
+    }
+
+    .arrow.left {
+        left: 10px;
+    }
+
+    .arrow.right {
+        right: 10px;
+    }
+    
+
+    
+}
+
+
+    .obj-item {
+    display: block;
+    font-weight: 600;
+    position: relative;
+    padding-left: 14px;
+}
+
+.obj-item::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #111;
+}
+
+.top-title {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 34px;
+    letter-spacing: 0.01em;
+}
+
+@media (max-width: 640px) {
+    .top-title {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+}
+
+
+
+</style>
+
+
+
+<div class="top-gallery">
+    <div class="top-title">Мы проектируем</div>
+    <div class="top-grid">
+
+        <div class="top-card" onclick="openProject(projects[0])">
+            <img src="https://i.yapx.ru/dUfeD.png" alt="Театры">
+            <div class="top-card-content">
+                <div class="top-card-title">Театры</div>
+            </div>
+        </div>
+
+        <div class="top-card" onclick="openProject(projects[1])">
+            <img src="https://i.yapx.ru/dUfrk.png" alt="Дворцы культуры">
+            <div class="top-card-content">
+                <div class="top-card-title">Дворцы культуры</div>
+            </div>
+        </div>
+
+        <div class="top-card" onclick="openProject(projects[2])">
+            <img src="https://i.yapx.ru/dUfYa.jpg" alt="Учебные заведения">
+            <div class="top-card-content">
+                <div class="top-card-title">Учебные заведения</div>
+            </div>
+        </div>
+
+        <div class="top-card" onclick="openProject(projects[3])">
+            <img src="https://i.yapx.ru/dUfwj.png" alt="Конференц-залы">
+            <div class="top-card-content">
+                <div class="top-card-title">Конференц-залы</div>
+            </div>
+        </div>
+
+        <div class="top-card" onclick="openProject(projects[4])">
+            <img src="https://i.yapx.ru/dUfzR.jpg" alt="Спортивные комплексы">
+            <div class="top-card-content">
+                <div class="top-card-title">Спортивные<br>комплексы</div>
+            </div>
+        </div>
+
+        <div class="top-card" onclick="openProject(projects[5])">
+            <img src="https://i.yapx.ru/dUf7E.jpg" alt="Административные комплексы">
+            <div class="top-card-content">
+                <div class="top-card-title">Административные<br>комплексы</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="project-detail" class="detail-block">
+    <div class="detail-box">
+
+        <div class="slider">
+            <div class="slider-stage" id="slider-stage"></div>
+
+            <span class="arrow left" onclick="prevImage()">❮</span>
+            <span class="arrow right" onclick="nextImage()">❯</span>
+
+            <div class="slider-dots" id="slider-dots"></div>
+        </div>
+
+        <div id="detail-title" class="detail-title">Театры</div>
+
+        <div id="detail-text" class="detail-text">
+            Описание выбранного направления. Здесь будет выводиться расширенный текст, когда пользователь нажимает на карточку выше.
+        </div>
+
+        <div class="detail-meta">
+            <div class="detail-meta-item">
+                <div class="detail-meta-label">Город</div>
+                <div id="detail-city" class="detail-meta-value">Екатеринбург</div>
+            </div>
+
+            <div class="detail-meta-item">
+                <div class="detail-meta-label">Объекты</div>
+                <div id="detail-objects" class="detail-meta-value list"></div>
+            </div>
+
+            <div class="detail-meta-item">
+                <div class="detail-meta-label">Разделы</div>
+                <div id="detail-work" class="detail-meta-value">Мультимедиа, освещение, звук</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+const projects = [
+    {
+        title: "Театры",
+        text: "Проектирование специализированных систем для театральных объектов: сценическое освещение, звуковые решения, мультимедиа и механика сцены. Детальная проработка документации позволяет реализовывать проекты без лишних доработок.",
+        city: "Екатеринбург, Челябинск",
+        objects: [
+            "Екатеринбургский театр кукол",
+            "Челябинский государственный академический театр драмы имени Наума Орлова"
+        ],
+        work: "Освещение, звук, механика сцены",
+        images: [
+            "https://i.yapx.ru/dUgMi.jpg",
+            "https://i.yapx.ru/dUgPu.jpg",
+            "https://i.yapx.ru/dUgSM.jpg",
+            "https://i.yapx.ru/dUgTS.jpg",
+            "https://i.yapx.ru/dUgVX.jpg",
+            "https://i.yapx.ru/dUgW2.jpg",
+            "https://i.yapx.ru/dUgao.jpg"
+        ]
+    },
+    {
+        title: "Дворцы культуры",
+        text: "Работа с домами культуры, концертными площадками, выставочными и общественными пространствами. Проекты включают комплексную инженерную и технологическую проработку.",
+        city: "Екатеринбург, Ачит, Ирбит",
+        objects: [
+            "Ачитский районный дом культуры",
+            "Дворец Культуры им. В.К. Костевича",
+            "Центр культуры и искусства ГО Рефтинский"
+        ],
+        work: "Освещение, мультимедиа, звук",
+        images: [
+            "https://i.yapx.ru/dUg8y.jpg",
+            "https://i.yapx.ru/dUiAM.jpg",
+            "https://i.yapx.ru/dUiA5.jpg",
+            "https://i.yapx.ru/dUiCf.jpg",
+            "https://i.yapx.ru/dUiCT.jpg",
+            "https://i.yapx.ru/dUiDu.jpg",
+            "https://i.yapx.ru/dUiGD.jpg",
+            "https://i.yapx.ru/dUiFS.jpg",
+            "https://i.yapx.ru/dUiGa.jpg"
+        ]
+    },
+    {
+        title: "Учебные заведения",
+        text: "Документация для школ, гимназий, лицеев и образовательных центров с учётом требований к мультимедийным системам, звуку, свету и внутренней инфраструктуре.",
+        city: "Екатеринбург, Березовский, Верхняя Пышма",
+        objects: [
+            "Музыкальная школа г. Когалым",
+            "Уральский губернаторский лицей",
+            "Лицей №88",
+            "Школа №22"
+        ],
+        work: "Мультимедиа, телевидение, звук",
+        images: [
+            "https://i.yapx.ru/dUiIS.jpg",
+            "https://i.yapx.ru/dUiIe.jpg",
+            "https://i.yapx.ru/dUiIc.jpg",
+            "https://i.yapx.ru/dUiJR.jpg",
+            "https://i.yapx.ru/dUiJo.jpg",
+            "https://i.yapx.ru/dUiJ4.jpg"
+        ]
+    },
+    {
+        title: "Конференц-залы",
+        text: "Проектирование решений для конференц-залов и деловых пространств с упором на звук, видео, трансляции и удобство эксплуатации.",
+        city: "Заречный",
+        objects: [
+            "Дворец Культуры Ровесник"
+        ],
+        work: "Звук, мультимедиа, трансляции",
+        images: [
+            "https://i.yapx.ru/dUiO2.jpg",
+            "https://i.yapx.ru/dUiRA.png",
+            "https://i.yapx.ru/dUiSy.jpg",
+            "https://i.yapx.ru/dUiRc.png"
+        ]
+    },
+    {
+        title: "Спортивные комплексы",
+        text: "Проектирование решений для спортивных объектов, арен и многофункциональных площадок. Особое внимание уделяется надежности систем, читаемости информации и качеству звукового сопровождения.",
+        city: "Екатеринбург",
+        objects: [
+            "Центр художественной и эстетической гимнастики",
+            "Дворец дзюдо"
+        ],
+        work: "Звук, мультимедиа, освещение",
+        images: [
+            "https://i.yapx.ru/dUioa.jpg",
+            "https://i.yapx.ru/dUien.jpg",
+            "https://i.yapx.ru/dUioz.jpg",
+            "https://i.yapx.ru/dUir1.jpg",
+            "https://i.yapx.ru/dUiud.jpg",
+            "https://i.yapx.ru/dUiu5.jpg"
+        ]
+    },
+    {
+        title: "Административные комплексы",
+        text: "Комплексные решения для административных, общественных и многофункциональных пространств с фокусом на удобстве эксплуатации и соответствии нормативным требованиям.",
+        city: "Екатеринбург",
+        objects: [
+            "Академический районный суд"
+        ],
+        work: "Мультимедиа, звук, технологические системы",
+        images: [
+            "https://i.yapx.ru/dUidD.jpg",
+            "https://i.yapx.ru/dUif0.jpg",
+            "https://i.yapx.ru/dUiny.jpg",
+            "https://i.yapx.ru/dUikk.jpg"
+        ]
+    }
+];
+
+let currentProject = projects[0];
+let currentIndex = 0;
+let autoSlideInterval = null;
+let autoSlidePausedTimeout = null;
+
+function renderSlides() {
+    const stage = document.getElementById("slider-stage");
+    const dots = document.getElementById("slider-dots");
+
+    stage.innerHTML = currentProject.images.map((src, index) => `
+        <div class="slide ${index === currentIndex ? 'active' : ''}">
+            <img src="${src}" alt="${currentProject.title}">
+        </div>
+    `).join("");
+
+    dots.innerHTML = currentProject.images.map((_, index) => `
+        <span class="slider-dot ${index === currentIndex ? 'active' : ''}" onclick="goToImage(${index})"></span>
+    `).join("");
+}
+
+function renderProject() {
+    document.getElementById("detail-title").innerText = currentProject.title;
+    document.getElementById("detail-text").innerText = currentProject.text;
+    document.getElementById("detail-city").innerText = currentProject.city;
+    document.getElementById("detail-work").innerText = currentProject.work;
+
+    document.getElementById("detail-objects").innerHTML =
+        currentProject.objects.map(item => `<span class="obj-item">${item}</span>`).join("");
+
+    renderSlides();
+}
+
+function openProject(project) {
+    currentProject = project;
+    currentIndex = 0;
+    renderProject();
+    restartAutoSlide();
+
+    const detailBlock = document.getElementById("project-detail");
+    const header = document.getElementById("site-header");
+    const headerHeight = header ? header.offsetHeight : 0;
+
+    const targetY =
+        detailBlock.getBoundingClientRect().top +
+        window.pageYOffset -
+        headerHeight -
+        10;
+
+    window.scrollTo({
+        top: targetY,
+        behavior: "smooth"
+    });
+}
+
+function nextImage() {
+    currentIndex = (currentIndex + 1) % currentProject.images.length;
+    renderSlides();
+    pauseAutoSlideTemporarily();
+}
+
+function prevImage() {
+    currentIndex = (currentIndex - 1 + currentProject.images.length) % currentProject.images.length;
+    renderSlides();
+    pauseAutoSlideTemporarily();
+}
+
+function goToImage(index) {
+    currentIndex = index;
+    renderSlides();
+    pauseAutoSlideTemporarily();
+}
+
+function startAutoSlide() {
+    stopAutoSlide();
+    autoSlideInterval = setInterval(() => {
+        currentIndex = (currentIndex + 1) % currentProject.images.length;
+        renderSlides();
+    }, 3500);
+}
+
+function stopAutoSlide() {
+    if (autoSlideInterval) {
+        clearInterval(autoSlideInterval);
+        autoSlideInterval = null;
+    }
+}
+
+function restartAutoSlide() {
+    if (autoSlidePausedTimeout) {
+        clearTimeout(autoSlidePausedTimeout);
+        autoSlidePausedTimeout = null;
+    }
+    startAutoSlide();
+}
+
+function pauseAutoSlideTemporarily() {
+    stopAutoSlide();
+
+    if (autoSlidePausedTimeout) {
+        clearTimeout(autoSlidePausedTimeout);
+    }
+
+    autoSlidePausedTimeout = setTimeout(() => {
+        startAutoSlide();
+    }, 6000);
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    renderProject();
+    startAutoSlide();
+});
+</script>
